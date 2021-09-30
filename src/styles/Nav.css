@@ -1,0 +1,50 @@
+nav {
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 7vw;
+    background-color:rgba(0, 0, 0, 0.5);
+    font-size: 1.25vw;
+}
+
+/* NavBar Logo top left*/
+
+.logoContainer{
+    padding-left: 5vw;
+    width: fit-content;
+}
+
+.logoImg{
+    width: 10rem;
+}
+
+.logoContainer div{
+    font-weight: 900;
+    position: absolute;
+    top: 20%;
+}
+
+a:link, a:visited{
+    color: inherit;
+}
+
+.logoContainer + a {
+    display: block;
+    background-color: #e50914;
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    text-decoration-line: none;
+    border-radius: 3px;
+    height: auto;
+    margin-right: 100px;
+    height: 1.5rem;
+    width: 5.5rem;
+    padding-top: 7.5px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+}
