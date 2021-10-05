@@ -1,0 +1,15 @@
+.dashboard{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 30%;
+    background-color: maroon;
+}
+
+.mainPlayBtn {
+    height: 50px;
+    width: 100px;
+    background-color: red;
+    color: white;
+}

@@ -1,0 +1,8 @@
+.signUp {
+    background-color: magenta;
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+}
