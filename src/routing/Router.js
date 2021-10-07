@@ -7,19 +7,23 @@ import SignUp from '../components/SignUp';
 import Nav from '../components/Nav';
 import Home from '../components/Home';
 import Dashboard from '../components/Dashboard';
+import Account from '../components/Account';
 
 const Router = (props) => {
-    const [signedIn, setSignedIn] = useState(null);
+    const [authState, setAuthState] = useState(localStorage.getItem('authState'));
     const [email, setEmail] = useState(null);
-    //console.log(props.location.pathname, 'routerprops');
+    console.log(authState, 'authstate');
+
+    //localStorage.clear();
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/firebase.User
             const uid = user.uid;
-            console.log(auth.currentUser, 'currentUser');
-            setSignedIn(auth.currentUser);
+            console.log('authed, router.js');
+            setAuthState(true);
+            localStorage.setItem('authState', true);
             // ...
         } else {
             // User is signed out
@@ -32,38 +36,71 @@ const Router = (props) => {
         console.log('prevented Submit');
     }
 
-    const HomeNav = () => {
-        return <Route exact path='/' render={() => {
-            return <div><Nav setEmail={setEmail} showSignIn={true} /><Home email={email} setEmail={setEmail} /></div>
-        }}></Route>
-    };
-
-    const DashboardNav = () => {
-        return <Route exact path='/' render={() => {
-            return <div><Nav setEmail={setEmail} showSignIn={true} /><Dashboard /></div>
-        }}></Route>
+    function PrivateRoute({ children, ...rest }) {
+        console.log('children:', children, 'rest:', rest, authState);
+        console.log(localStorage.getItem('authState'));
+        return (
+            <Route {...rest} render={() => {
+                return authState !== null
+                    ? children
+                    : <Redirect to='/' />
+            }} />
+        )
     }
 
-    console.log(auth.currentUser, 'router');
+    async function createUser(email, password) {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user, 'user - createUser');
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log('error occured', errorCode, errorMessage);
+            });
+    }
+
+    async function signInUser(email, password) {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                console.log('sign in successful', userCredential.user);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log('sign in error', errorCode, errorMessage);
+            });
+    }
 
     return (
         <BrowserRouter>
             <Switch>
                 <Route exact path='/'>
-                    {auth.currentUser === null ?
-                        HomeNav() :
-                        <Redirect to='dashboard' />
+                    {authState === null ?
+                        (
+                            <div>
+                                <Nav setEmail={setEmail} showSignIn={true} />
+                                <Home email={email} setEmail={setEmail} />
+                            </div>
+                        ) :
+                        <Redirect to='/dashboard' />
                     }
                 </Route>
+                <PrivateRoute exact path='/dashboard'>
+                    <Nav setEmail={setEmail} setAuthState={setAuthState} showProfile={true} />
+                    <Dashboard />
+                </PrivateRoute>
                 <div>
                     <Nav setEmail={setEmail} />
-                    <Route exact path='/signin' render={() => <SignIn />} />
-                    <Route exact path='/signup' render={() => <SignUp signedIn={signedIn} setSignedIn={setSignedIn} email={email} />} />
-                    <Route exact path='/dashboard'>
-                        {auth.currentUser === null ?
-                            <Redirect to='/' /> :
-                            <Dashboard />
-                        }
+                    <Route exact path='/signin'>
+                        <SignIn signInUser={signInUser} />
+                    </Route>
+                    <Route exact path='/signup'>
+                        <SignUp createUser={createUser} setAuthState={setAuthState} email={email} />
+                    </Route>
+                    <Route exact path='/account'>
+                        <Account />
                     </Route>
                 </div>
             </Switch>

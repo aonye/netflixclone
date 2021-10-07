@@ -47,3 +47,14 @@ a:link, a:visited{
     text-align: center;
     -webkit-font-smoothing: antialiased;
 }
+
+.profile{
+    margin-right: 100px;
+}
+
+
+.dropdown {
+    background-color: magenta;
+    position: absolute;
+    flex-direction: column;
+}

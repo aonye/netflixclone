@@ -1,7 +1,7 @@
-const SignUpBtn = () => {
+const SignOutBtn = () => {
     return (
         <a href='/signin'>Sign In</a>
     );
 }
 
-export default SignUpBtn;
+export default SignOutBtn;

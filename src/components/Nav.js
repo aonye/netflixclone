@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import SignUpBtn from './Nav_components/SignUpBtn';
+import SignInBtn from './Nav_components/SignInBtn';
+import SignOutBtn from './Nav_components/SignOutBtn';
+import Profile from './Nav_components/Profile';
 import NetflixLogo from '../images/Netflix-Logo.png'
 import '../styles/Nav.css';
 
@@ -9,7 +11,8 @@ const Nav = (props) => {
             <div className='logoContainer'>
                 <Link to='./'><img className='logoImg' onClick={() => props.setEmail(null)} src={NetflixLogo} alt='NetflixLogo' /></Link>
             </div>
-            {props.showSignIn ? <SignUpBtn /> : null}
+            {props.showSignIn ? <SignInBtn /> : null}
+            {props.showProfile ? <Profile setAuthState={props.setAuthState} /> : null}
         </nav>
     );
 }
