@@ -5,6 +5,12 @@
     position: absolute;
     top: 30%;
     background-color: maroon;
+    width: 90vw;
+}
+
+.mainMediaCont {
+    background-color: magenta;
+    width: 90vw;
 }
 
 .mainPlayBtn {

@@ -1,0 +1,53 @@
+@media only screen and (max-width: 1200px) {
+    .previewCont{
+        display: none;
+        background-color: rgb(0,0,0,0.7);
+        font-size: 12px;
+        position: absolute;
+        bottom: 1%;
+        width: 16vw;
+        transition: all .2s ease-in-out; 
+        font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    }
+}
+
+.mediaCont{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100vw;
+}
+
+.mediaTitle {
+    background-color: mediumblue;
+    padding-left: 10vw;
+    display: block;
+    font-size: 24px;
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    height: 30px;
+    
+}
+
+.previews {
+    display: flex;
+    background-color: white;
+    position: relative;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.mediaUnit{
+    width: 20vw;
+}
+
+.previewImg{
+    width: 16vw;
+    transition: all .2s ease-in-out; 
+}
+
+
+.previewTitle{
+    font-size: 15px;
+    font-weight: 800;
+}
