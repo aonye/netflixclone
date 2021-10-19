@@ -26,18 +26,17 @@ const Router = (props) => {
     const [MTKey, setMTKey] = useState(Object.keys({ films }));
 
     const [authState, setAuthState] = useState(localStorage.getItem('authState')); //null if not found
-    const [displayName, setDN] = useState();
+    const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
 
     const [signInMsg, setSIMsg] = useState(null);
     const [signUpMsg, setSUMsg] = useState(null);
-    const [acctMsg, setAcctMsg] = useState(null);
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
             console.log(user, 'authed');
             localStorage.setItem('authState', JSON.stringify(user));
-            setDN(user.displayName);
+            setName(user.displayName);
             setEmail(user.email);
         } else {
             console.log(user, 'not authed');
@@ -66,13 +65,18 @@ const Router = (props) => {
     }
 
     async function createUser(email, password, name) {
-        createUserWithEmailAndPassword(auth, email, password)
+        const x = await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 //const user = userCredential.user;
-                setAuthState(auth.currentUser);
                 updateProfile(auth.currentUser, {
                     displayName: name,
-                });
+                })
+                    .then(() => {
+                        setAuthState(auth.currentUser);
+                    })
+                    .catch((error) => {
+                        throw error;
+                    });
                 setSUMsg(<AuthMsg useClass={'auth-success'} msg={customMsg('auth/sign-up-success')} />);
             })
             .catch((error) => {
@@ -80,6 +84,7 @@ const Router = (props) => {
                 //console.log('error occured', errorCode, errorMessage);
                 setSUMsg(<AuthMsg useClass={`auth-error`} msg={customMsg(errorCode)} />)
             });
+        console.log(x);
     }
 
     async function signInUser(email, password) {
@@ -97,7 +102,7 @@ const Router = (props) => {
     }
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/netflixclone'>
             <Switch>
                 <RouteWrap exact path='/'>
                     <Nav
@@ -127,25 +132,21 @@ const Router = (props) => {
                 <PrivateRoute exact path='/dashboard'>
                     <Nav
                         NavMediaBar={<NavMediaBar setMediaType={setMediaType} setMTKey={setMTKey} films={films} series={series} />}
-                        Profile={<Profile setAuthState={setAuthState} displayName={displayName} email={email} />}
+                        Profile={<Profile setAuthState={setAuthState} name={name} email={email} />}
                     />
                     <Dashboard mediaType={mediaType} MTKey={MTKey} />
                 </PrivateRoute>
                 <PrivateRoute exact path='/account'>
                     <Nav />
                     <Account
-                        displayName={displayName}
-                        email={email}
-                        acctMsg={acctMsg}
-                        setAcctMsg={setAcctMsg}
                         setEmail={setEmail}
                     />
                 </PrivateRoute>
                 <PrivateRoute exact path='/username'>
                     <Nav />
                     <Username
-                        displayName={displayName}
-                        setDN={setDN}
+                        name={name}
+                        setName={setName}
                     />
                 </PrivateRoute>
             </Switch>

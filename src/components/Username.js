@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { auth } from '../firebase/firebase';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { customMsg } from '../helper/helper';
 import {
     updateProfile,
@@ -10,8 +10,8 @@ import {
 import AuthMsg from './AuthMsg';
 import '../styles/Username.css';
 
-const Username = ({ displayName, setDN }) => {
-    const name = useRef();
+const Username = ({ name, setName }) => {
+    const nameField = useRef();
     const currentPw = useRef();
     const [error, setError] = useState(null);
     const history = useHistory();
@@ -25,10 +25,11 @@ const Username = ({ displayName, setDN }) => {
         const cred = EmailAuthProvider.credential(auth.currentUser.email, currentPw.current.value);
         reauthenticateWithCredential(auth.currentUser, cred).then(() => {
             // User re-authed.
-            updateProfile(auth.currentUser, { displayName: name.current.value })
+            updateProfile(auth.currentUser, { displayName: nameField.current.value })
                 .then(() => {
                     console.log('success');
-                    setDN(name.current.value);
+                    console.log(nameField.current.value);
+                    setName(nameField.current.value);
                     redirectDash();
                 })
                 .catch((error) => {
@@ -55,9 +56,9 @@ const Username = ({ displayName, setDN }) => {
                     <label>Current Password</label>
                     <input ref={currentPw} type='password' placeholder='Current Password' required></input>
                     <label>New Name</label>
-                    <input ref={name} type='text' placeholder='First Name' defaultValue={displayName}></input>
+                    <input ref={nameField} type='text' placeholder='First Name' defaultValue={name}></input>
                     <input id='username-submit' type='submit' value='Submit'></input>
-                    <a href='/dashboard'>Go back</a>
+                    <Link to='/dashboard'>Go back</Link>
                 </form>
             </div>
             <div className='overlay'></div>

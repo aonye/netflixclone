@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 import { auth } from '../../firebase/firebase';
 import { signOut } from 'firebase/auth';
 import '../../styles/Profile.css';
 import Avatar from '../../images/Netflix-avatar.png';
 
-const Profile = ({ displayName, email, setAuthState }) => {
+const Profile = ({ name, email, setAuthState }) => {
     const dropDownRef = useRef();
 
     function signOutHand() {
@@ -24,10 +25,10 @@ const Profile = ({ displayName, email, setAuthState }) => {
     const Dropdown = () => {
         return (
             <ul ref={dropDownRef} className='dropdown' style={{ display: 'none' }}>
-                <li className='dropdown-email'>{`${displayName} | ${email}`}</li>
+                <li className='dropdown-email'>{`${name} | ${email}`}</li>
                 <hr />
-                <a href='/account'><li>Account Settings</li></a>
-                <a href='/username'><li>Update Username</li></a>
+                <Link to='/account'><li>Account Settings</li></Link>
+                <Link to='/username'><li>Update Username</li></Link>
                 <li onClick={() => signOutHand()}>Log Out</li>
             </ul>
         )

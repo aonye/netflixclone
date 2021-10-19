@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { auth } from '../firebase/firebase';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { customMsg } from '../helper/helper';
 import {
     updateEmail,
@@ -11,7 +11,7 @@ import {
 import AuthMsg from './AuthMsg';
 import '../styles/Account.css';
 
-const Account = ({ setEmail, email }) => {
+const Account = ({ setEmail }) => {
     const emailField = useRef();
     const currentPw = useRef();
     const pw = useRef();
@@ -87,7 +87,7 @@ const Account = ({ setEmail, email }) => {
                     <label>Confirm New Password</label>
                     <input ref={confirmPw} type='password' minLength='6' placeholder='Confirm Password'></input>
                     <input id='acct-submit' type='submit' value='Submit'></input>
-                    <a href='/dashboard'>Go back</a>
+                    <Link to='/dashboard'>Go back</Link>
                 </form>
 
             </div>
