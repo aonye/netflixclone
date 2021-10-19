@@ -1,22 +1,37 @@
+import { useRef, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import SignInBtn from './Nav_components/SignInBtn';
-import SignOutBtn from './Nav_components/SignOutBtn';
-import Profile from './Nav_components/Profile';
-import NetflixLogo from '../images/Netflix-Logo.png'
+import NetflixLogo from '../images/Netflix-Logo.png';
 import '../styles/Nav.css';
 
-const Nav = (props) => {
+const Nav = ({ SignInBtn, NavMediaBar, Profile }) => {
+    const navBar = useRef();
+
+    useEffect(() => {
+        document.addEventListener('scroll', transparentScroll);
+        return () => document.removeEventListener('scroll', transparentScroll);
+    });
+
+    function transparentScroll() {
+        if (window.scrollY === 0) {
+            navBar.current.classList.add('transparent');
+        } else if (window.scrollY !== 0) {
+            navBar.current.classList.remove('transparent');
+        }
+    }
     return (
-        <nav>
-            <div className='logoContainer'>
-                <Link to='./'><img className='logoImg' onClick={() => props.setEmail(null)} src={NetflixLogo} alt='NetflixLogo' /></Link>
+        <nav ref={navBar} className='navbar transparent'>
+            <div className='nav-container'>
+                <div className='left-align'>
+                    <div className='logoContainer'>
+                        <Link to='./'><img className='logoImg' src={NetflixLogo} alt='NetflixLogo' /></Link>
+                    </div>
+                    {NavMediaBar}
+                </div>
+                {SignInBtn}
+                {Profile}
             </div>
-            {props.showSignIn ? <SignInBtn /> : null}
-            {props.showProfile ? <Profile setAuthState={props.setAuthState} /> : null}
         </nav>
     );
 }
 
 export default Nav;
-
-//<Link to='./hiscores'><img className='hiscores' alt='SignInBtn' /></Link>

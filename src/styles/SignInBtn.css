@@ -1,0 +1,31 @@
+.SIBCont {
+    display: flex;
+    align-items: center;
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.SIBCont a {
+    text-decoration: none;
+}
+
+.SIB {
+    display: block;
+    background-color: #e50914;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration-line: none;
+    border-color:#e50914;
+    border-radius: 10%;
+    height: auto;
+    margin-right: 100px;
+    height: 40px;
+    width: 80px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+.SIB:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}

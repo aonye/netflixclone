@@ -1,8 +1,102 @@
-.signin{
-    background-color: magenta;
+.signIn{
+    background: url(../images/netflix_landing_pg.jpg) center center no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+}
+
+.signIn-overlay {
+    background: linear-gradient(0deg, rgb(0,0,0,0.9) 0%, rgb(0,0,0,0.5)50%, rgb(0,0,0,0.9)100%);
     position: absolute;
-    width: 500px;
-    height: 500px;
-    top: 50%;
-    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Netflix Sans', sans-serif;
+    color: white;
+    text-align: left;
+    height: 100%;
+    width: 100%;
+}
+
+.signIn-container{
+    background-color: rgb(0,0,0, 0.8);
+    width: 400px;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.signIn-container * {
+    width: 300px;
+}
+
+.signIn-container h1 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.signIn-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signIn-container form input {
+    padding-left: 15px;
+    width: 285px;
+    background: rgb(51, 51, 51);
+    border-radius: 4px;
+    border: 0px;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 20px;
+}
+
+#signIn-submit{
+    width: 302px;
+    background-color: #e50914;
+}
+
+#signIn-submit:hover{
+    cursor: pointer;
+}
+
+.signIn-container h2 {
+    font-size: 16px;
+    color: rgb(115, 115, 115);
+}
+
+.signIn-container h3 {
+    font-size: 13px;
+    color: rgb(140, 140, 140);
+}
+
+.signIn-error {
+    background: #e87c03;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+    height: 40px;
+    border-radius: 4px;
+    border: 0px;
+}
+
+.signIn-success {
+    background: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+    height: 40px;
+    border-radius: 4px;
+    border: 0px;
 }

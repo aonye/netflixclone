@@ -1,0 +1,69 @@
+.acct {
+    background: url(../images/netflix_landing_pg.jpg) center center no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-family: 'Netflix Sans', sans-serif;
+    color: white;
+}
+
+.acct-container {
+    z-index: 1;
+    background-color: rgb(0,0,0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    bottom: 5%;
+    width: 400px;
+    min-height: 550px;
+}
+
+.acct-container * {
+    min-width: 300px;
+}
+
+.acct-container h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.acct-container h2 {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.acct-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.acct-container form label {
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.acct form input {
+    padding-left: 15px;
+    background: rgb(51, 51, 51);
+    border-radius: 4px;
+    border: 0px;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 15px;
+}
+
+#acct-submit{
+    background-color: #e50914;
+    padding: 0;
+    width: 320px;
+}
+
+#acct-submit:hover{
+    cursor: pointer;
+}

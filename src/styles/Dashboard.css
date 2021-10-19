@@ -1,21 +1,86 @@
-.dashboard{
+@media only screen and (max-width: 1000px) {
+    .active {
+        display: none !important;
+    }
+}
+
+.mainMediaCont div {
     color: white;
+    background-color: rgb(0,0,0,0.1);
+    width: 750px;
+    height: 300px;
+    bottom: 20%;
+    position: inherit;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 30%;
-    background-color: maroon;
-    width: 90vw;
+    justify-content: space-evenly;
+    margin-left: 2.5%;
 }
 
-.mainMediaCont {
-    background-color: magenta;
-    width: 90vw;
+.mainMediaCont div h1 {
+    font-size: 40px !important;
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
-.mainPlayBtn {
-    height: 50px;
-    width: 100px;
-    background-color: red;
+p {
+    font-size: 20px !important;
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif !important;
+}
+
+.media-wrapper {
+    background-color:black;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.media-container {
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+}
+
+.media-title{
     color: white;
+    background-color: black;
+    display: flex;
+    font-size: 24px;
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    height: 30px;
+}
+
+.playBtn {
+    display: block;
+    background-color: rgb(229,9,20);
+    color: rgb(255, 255, 255);
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    border-color: rgb(255, 10, 16);
+    border-radius: 10%;
+    height: 40px;
+    width: 80px;
+    text-align: center;
+}
+
+.hover {
+    transform: scale(1.1);
+    cursor:pointer;
+}
+
+.video-responsive {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0,0,0,0.8);
+    z-index: 2;
 }

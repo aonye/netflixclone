@@ -11,41 +11,22 @@
     }
 }
 
-.mediaCont{
+.cards {
     display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    width: 100vw;
-}
-
-.mediaTitle {
-    background-color: mediumblue;
-    padding-left: 10vw;
-    display: block;
-    font-size: 24px;
-    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
-    font-weight: 700;
-    height: 30px;
-    
-}
-
-.previews {
-    display: flex;
-    background-color: white;
+    justify-content: space-between;
     position: relative;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    background-color: black;
 }
 
-.mediaUnit{
-    width: 20vw;
-}
-
-.previewImg{
-    width: 16vw;
+.cardImg{
+    width: 15vw;
     transition: all .2s ease-in-out; 
 }
 
+.cardImgHover{
+    transform: scale(1.2);
+    z-index: 0.9;
+}
 
 .previewTitle{
     font-size: 15px;

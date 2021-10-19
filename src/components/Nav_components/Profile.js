@@ -1,43 +1,44 @@
 import { useRef } from 'react';
 import { auth } from '../../firebase/firebase';
 import { signOut } from 'firebase/auth';
+import '../../styles/Profile.css';
 import Avatar from '../../images/Netflix-avatar.png';
 
-const Profile = (props) => {
-    const { setAuthState } = props;
+const Profile = ({ displayName, email, setAuthState }) => {
     const dropDownRef = useRef();
 
     function signOutHand() {
         signOut(auth).then(() => {
-            // Sign-out successful.
-            console.log('sign out successful');
-            localStorage.removeItem('authState');
             setAuthState(null);
+            console.log('sign out successful');
         }).catch((error) => {
-            // An error happened.
-            console.log('error signing out');
+            alert('Error signing out', error);
         });
     }
 
-    function clickHand(e) {
-        if (dropDownRef.current.style.display === 'none') {
-            dropDownRef.current.style.display = 'flex';
-            return;
-        }
-        dropDownRef.current.style.display = 'none';
+    function clickHand() {
+        const changeStyle = dropDownRef.current.style.display === 'none' ? 'block' : 'none';
+        dropDownRef.current.style.display = changeStyle;
     }
-    const dropdown = () => {
+
+    const Dropdown = () => {
         return (
             <ul ref={dropDownRef} className='dropdown' style={{ display: 'none' }}>
+                <li className='dropdown-email'>{`${displayName} | ${email}`}</li>
+                <hr />
                 <a href='/account'><li>Account Settings</li></a>
+                <a href='/username'><li>Update Username</li></a>
                 <li onClick={() => signOutHand()}>Log Out</li>
             </ul>
         )
-    }
+    };
+
     return (
         <div className='profile'>
-            <img onClick={(e) => clickHand(e)} src={Avatar} alt='' width='50' height='50' />
-            {dropdown()}
+            <div>
+                <img onClick={() => clickHand()} src={Avatar} alt='' width='50' height='50' />
+            </div>
+            <Dropdown />
         </div>
 
     );

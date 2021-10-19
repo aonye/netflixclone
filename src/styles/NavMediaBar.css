@@ -1,0 +1,15 @@
+.navMB {
+    display: flex;
+    align-items: center;
+    width: 120px;
+    font-size: 18px;
+    font-family: 'Netflix Sans', sans-serif;
+    text-decoration: underline;
+    color: white;
+    justify-content: space-evenly;
+    margin-left: 2vw;
+}
+
+.navMB li:hover{
+    cursor: pointer;
+}

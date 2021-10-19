@@ -1,6 +1,10 @@
+import '../../styles/SignInBtn.css';
+
 const SignInBtn = () => {
     return (
-        <a href='/signin'>Sign In</a>
+        <div className='SIBCont'>
+            <a href='/signin'><button className='SIB'>Sign In</button></a>
+        </div>
     );
 }
 
