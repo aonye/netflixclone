@@ -36,3 +36,7 @@
 .dropdown-email {
     margin-bottom: 10px;
 }
+
+.dropdown-email:hover{
+    cursor: default !important;
+}
